@@ -1,0 +1,20 @@
+extends ./layout/index
+block mainBlock
+    .container 
+        if(msg)
+            p.alert.alert-success.text-center.mx-auto.mt-4 #{msg}
+        .row
+            if(error)
+                p.alert.alert-danger.text-center.m-3 #{error}
+            if(noticias.length > 0)
+                for not of noticias
+                    .col-md-4.my-4
+                        .card(style='width: 18rem;')
+                            img.card-img-top.img-fluid(src=`/image/${not.imagen}`)
+                            .card-body
+                                h5.card-title #{not.titulo}
+                                p.card-text
+                                | #{not.subtitulo}
+                                a.btn.btn-primary(href=`/noticiasDetalle/${not.id}`).mt-3 Obtener más información
+            else 
+                .alert.alert-info.text-center.mt-4 No hay noticias actualmente

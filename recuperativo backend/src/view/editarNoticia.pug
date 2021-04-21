@@ -1,0 +1,35 @@
+extends ./layout/index
+block mainBlock
+    .container 
+        .row
+            .col-md-6.mx-auto
+                .card.card-body.my-5
+                  
+                    if(msg)
+                        p.alert.alert-success.text-center.m-3 #{msg}
+                    if(error)
+                        p.alert.alert-danger.text-center.m-3 #{error}
+                    if(noticia)
+                        form(action=`/noticiaEditar/${noticia.id}` method="post") 
+                            .form-group
+                                label(for="titulo") Titulo 
+                                input#titulo(type="text",  value=noticia.titulo class="form-control" name="titulo" required="true" placeholder="Agregar titulo") 
+                            .form-group
+                                label(for="subtitulo") Subtitulo  
+                                input#subtitulo(type="text",  value=noticia.subtitulo class="form-control" name="subtitulo" required="true" placeholder="Agregar subtitulo") 
+                            .form-group
+                                label(for="autor") Autor  
+                                input#autor(type="text",  value=noticia.autor class="form-control" name="autor" required="true" placeholder="Agregar autor") 
+                            .form-group
+                                label(for="fecha") Fecha  
+                                input#fecha(type="date",  value=noticia.fecha class="form-control" name="fecha" required="true" placeholder="Fecha de la noticia") 
+                            .form-group
+                                label(for="categoria") Categoria  
+                                input#categoria(type="text",  value=noticia.categoria class="form-control" name="categoria" required="true" placeholder="Categoria de la noticia") 
+                            .form-group
+                                label(for="imagen") Descripcion  
+                                textarea#descripcion(name="descripcion" required="true" placeholder="Describe el producto...").form-control #{noticia.descripcion}
+                            .form-group 
+                                button(type="submit" class="btn mt-4 btn-info btn-block") Actualizar
+                    else 
+                        p.alert.alert-danger.text-center.m-3 Esta noticia no existe

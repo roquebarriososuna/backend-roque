@@ -1,0 +1,34 @@
+extends ./layout/index
+block mainBlock
+    .container 
+        .row
+            .col-md-6.mx-auto
+                .card.card-body.my-5
+                    if(msg)
+                        p.alert.alert-success.text-center.m-3 #{msg}
+                    if(error)
+                        p.alert.alert-danger.text-center.m-3 #{error}
+                    form(action="/agregarNoticia" method="post" enctype="multipart/form-data") 
+                        .form-group
+                            label(for="titulo") Titulo 
+                            input#titulo(type="text",  class="form-control" name="titulo" required="true" placeholder="Agregar titulo") 
+                        .form-group
+                            label(for="subtitulo") Subtitulo  
+                            input#subtitulo(type="text",  class="form-control" name="subtitulo" required="true" placeholder="Agregar subtitulo") 
+                        .form-group
+                            label(for="autor") Autor  
+                            input#autor(type="text",  class="form-control" name="autor" required="true" placeholder="Agregar autor") 
+                        .form-group
+                            label(for="fecha") Fecha  
+                            input#fecha(type="date",  class="form-control" name="fecha" required="true" placeholder="Fecha de la noticia") 
+                        .form-group
+                            label(for="categoria") Categoria  
+                            input#categoria(type="text",  class="form-control" name="categoria" required="true" placeholder="Categoria de la noticia") 
+                        .form-group
+                            label(for="imagen") Descripcion  
+                            textarea#descripcion(name="descripcion" required="true" placeholder="Describe el producto...").form-control 
+                        .custom-file
+                            input#imagen.custom-file-input(type='file' name="imagen-noticia" accept="image/png, image/jpg, image/jpeg" required='true')
+                            label.custom-file-label(for='imagen') Selecionar la imagen de la noticia...
+                        .form-group 
+                            button(type="submit" class="btn mt-4 btn-success btn-block") Enviar

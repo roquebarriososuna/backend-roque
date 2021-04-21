@@ -1,0 +1,26 @@
+extends ./layout/index
+block mainBlock
+    .container 
+        .row
+            if(!noticia)
+                p.alert.alert-danger.text-center.m-3 No existe esta noticia
+            .card.mb-3.mx-auto.my-5(style='max-width: 540px;')
+                .row.g-0
+                    .col-md-4
+                    img(src=`/image/${noticia.imagen}` class="img-fluid")
+                    .col-md-8
+                    .card-body
+                        h5.card-title #{noticia.titulo}
+                        p.card-text
+                        | #{noticia.subtitulo}
+                        p.card-text
+                        | #{noticia.descripcion}
+                        p.card-text
+                        small.text-muted #{noticia.fecha}
+                        p.card-text.mr-4
+                        small.text-muted #{noticia.autor}
+                        p.card-text.mr-4
+                        small.text-muted #{noticia.categoria}
+                        .container.mt-5 
+                            a(href=`/noticiaEditar/${noticia.id}`).btn.btn-info Editar
+                            a(href=`/noticiaEliminar/${noticia.id}`).btn.btn-danger.ml-2 Elminar
